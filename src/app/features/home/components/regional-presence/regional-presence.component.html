@@ -1,0 +1,37 @@
+@if (regional(); as r) {
+  <section class="regional-section">
+
+    <div class="regional-container">
+
+      <!-- Left content -->
+      <div class="regional-content">
+        <span class="regional-label">{{ r.label }}</span>
+
+        <h2>{{ r.title }}</h2>
+
+        @for (p of r.paragraphs; track $index) {
+          <p>{{ p }}</p>
+        }
+      </div>
+
+      <!-- Right image -->
+      <div class="regional-visual">
+        <div class="regional-image">
+          <img [src]="r.image" [alt]="r.imageAlt">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Statistics -->
+    <div class="regional-stats">
+      @for (s of stats(); track s.label) {
+        <div class="regional-stat">
+          <strong>{{ s.value }}</strong>
+          <span>{{ s.label }}</span>
+        </div>
+      }
+    </div>
+
+  </section>
+}

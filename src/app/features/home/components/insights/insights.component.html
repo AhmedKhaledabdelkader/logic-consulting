@@ -1,0 +1,22 @@
+<section class="insights-section">
+
+  <div class="insights-container">
+
+    <div class="insights-header">
+      <h2>Insights</h2>
+      <p>Explore our latest insights and turn clarity into competitive advantage.</p>
+    </div>
+
+    <div class="cards-grid">
+      @for (i of insights(); track i.slug) {
+        <app-content-card [title]="i.title" [image]="i.image" [link]="['/insights', i.slug]" />
+      }
+    </div>
+
+    <div class="insights-action">
+      <a class="insights-btn" routerLink="/insights">Access all insights</a>
+    </div>
+
+  </div>
+
+</section>

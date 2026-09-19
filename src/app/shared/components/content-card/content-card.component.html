@@ -1,0 +1,14 @@
+<article class="content-card">
+
+  <div class="card-image">
+    <img [src]="image()" [alt]="title()">
+  </div>
+
+  <h3>{{ title() }}</h3>
+
+  <a class="card-more" [routerLink]="link()">
+    {{ linkLabel() }}
+    <i class="bi bi-chevron-double-right"></i>
+  </a>
+
+</article>

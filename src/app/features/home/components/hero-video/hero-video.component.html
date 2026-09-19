@@ -1,0 +1,39 @@
+@if (url(); as src) {
+  <section class="hero-video">
+
+    <div class="hero-video-wrapper">
+      <iframe
+        class="hero-video-iframe"
+        [src]="src"
+        [title]="video()?.title ?? ''"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <!-- Content on top of the video -->
+    @if (impact(); as d) {
+      <div class="impact-content">
+
+        <h2 class="impact-title">{{ d.label }}</h2>
+
+        <p class="impact-subtitle">{{ d.title }}</p>
+
+        <div class="impact-buttons">
+          @for (l of d.links; track l.path; let first = $first) {
+            <a class="impact-btn" [class.impact-btn--dark]="first" [class.impact-btn--light]="!first"
+               [routerLink]="l.path">
+              {{ l.label }}
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          }
+        </div>
+
+      </div>
+    }
+
+  </section>
+}

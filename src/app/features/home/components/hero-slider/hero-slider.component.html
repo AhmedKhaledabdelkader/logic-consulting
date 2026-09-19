@@ -1,0 +1,36 @@
+<section class="hero-carousel" (mouseenter)="stop()" (mouseleave)="start()">
+
+  <div class="carousel-track">
+    @for (s of slides(); track s.title; let i = $index) {
+      <div class="hero-slide" [class.active]="i === index()" [attr.aria-hidden]="i !== index()">
+
+        <div class="hero-image">
+          <img [src]="s.image" [alt]="s.title">
+        </div>
+
+        <div class="hero-content">
+          <span class="hero-category">{{ s.category }}</span>
+          <h1>{{ s.title }}</h1>
+          @if (s.description) {
+            <p>{{ s.description }}</p>
+          }
+          <a class="hero-link" [routerLink]="s.link.path">
+            {{ s.link.label }} <span>→</span>
+          </a>
+        </div>
+
+      </div>
+    }
+  </div>
+
+  <button class="hero-prev" type="button" aria-label="Previous slide" (click)="prev()"><span>←</span></button>
+  <button class="hero-next" type="button" aria-label="Next slide" (click)="next()"><span>→</span></button>
+
+  <div class="hero-indicators">
+    @for (s of slides(); track s.title; let i = $index) {
+      <button class="indicator" type="button" [class.active]="i === index()"
+              [attr.aria-label]="'Go to slide ' + (i + 1)" (click)="go(i)"></button>
+    }
+  </div>
+
+</section>

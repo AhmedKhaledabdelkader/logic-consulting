@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --brand-primary: #0e7c7b;   // teal
+  --brand-dark:    #0b2e33;   // deep petrol
+  --brand-accent:  #f2a541;   // amber
+  --brand-light:   #f4f7f8;
+  --bs-body-font-family: 'Poppins', sans-serif;
+  --bs-primary: var(--brand-primary);
+  --bs-primary-rgb: 14, 124, 123;
+  --bs-link-color: var(--brand-primary);
+}
+
+body { color: #23363a; }
+
+.bg-brand-dark   { background: var(--brand-dark) !important; }
+.bg-brand-light  { background: var(--brand-light) !important; }
+.text-accent     { color: var(--brand-accent) !important; }
+.text-brand      { color: var(--brand-primary) !important; }
+
+.btn-primary {
+  --bs-btn-bg: var(--brand-primary);
+  --bs-btn-border-color: var(--brand-primary);
+  --bs-btn-hover-bg: #0a6160;
+  --bs-btn-hover-border-color: #0a6160;
+  --bs-btn-active-bg: #0a6160;
+}
+.btn-accent {
+  --bs-btn-bg: var(--brand-accent);
+  --bs-btn-border-color: var(--brand-accent);
+  --bs-btn-color: var(--brand-dark);
+  --bs-btn-hover-bg: #e0922a;
+  --bs-btn-hover-border-color: #e0922a;
+  --bs-btn-hover-color: var(--brand-dark);
+  font-weight: 600;
+}
+.btn-outline-light:hover { color: var(--brand-dark); }
+
+.section { padding: 5rem 0; }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+
+  @media (max-width: 992px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 576px) { grid-template-columns: 1fr; gap: 25px; }
+}

@@ -1,0 +1,34 @@
+@if (data(); as d) {
+  <section class="impact-expertise">
+
+    <div class="impact-expertise-inner">
+
+      <!-- Small label -->
+      <div class="impact-expertise-label">
+        <span>{{ d.label }}</span>
+      </div>
+
+      <!-- Main content -->
+      <div class="impact-expertise-content">
+
+        <!-- Heading -->
+        <div class="impact-expertise-heading">
+          <h2>{{ d.title }}</h2>
+        </div>
+
+        <!-- Links -->
+        <div class="impact-expertise-links">
+          @for (l of d.links; track l.path) {
+            <a class="impact-expertise-link" [routerLink]="l.path">
+              <span>{{ l.label }}</span>
+              <span class="impact-link-arrow">↗</span>
+            </a>
+          }
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+}

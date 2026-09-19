@@ -1,0 +1,39 @@
+<section class="stories" (mouseenter)="stop()" (mouseleave)="start()">
+  <div class="container">
+
+    <div class="stories-head">
+      <h2>{{ title() }}</h2>
+      @if (subtitle()) { <p>{{ subtitle() }}</p> }
+    </div>
+
+    <div class="stories-stage">
+      @for (s of stories(); track s.path; let i = $index) {
+        <article class="story"
+                 [class.active]="i === index()"
+                 [class.past]="i < index()"
+                 [attr.aria-hidden]="i !== index()">
+
+          <div class="story-image">
+            <img [src]="s.image" [alt]="s.title">
+          </div>
+
+          <div class="story-content">
+            <h3>{{ s.title }}</h3>
+            <a class="story-more" [routerLink]="s.path" [attr.tabindex]="i === index() ? 0 : -1">
+              Read More <i class="bi bi-caret-right-fill"></i>
+            </a>
+          </div>
+
+        </article>
+      }
+    </div>
+
+    <div class="stories-indicators">
+      @for (s of stories(); track s.path; let i = $index) {
+        <button type="button" [class.active]="i === index()"
+                [attr.aria-label]="'Go to story ' + (i + 1)" (click)="go(i)"></button>
+      }
+    </div>
+
+  </div>
+</section>

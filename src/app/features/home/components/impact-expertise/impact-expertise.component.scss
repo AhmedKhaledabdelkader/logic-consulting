@@ -1,0 +1,115 @@
+.impact-expertise {
+  width: 100%;
+  background: var(--brand-dark);   /* was #111 */
+  color: #fff;
+}
+
+.impact-expertise-inner {
+  min-height: 650px;
+  padding: 90px 7vw 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ===== LABEL ===== */
+.impact-expertise-label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  span {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* ===== MAIN CONTENT ===== */
+.impact-expertise-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: end;
+  gap: 100px;
+}
+
+/* ===== HEADING ===== */
+.impact-expertise-heading {
+  max-width: 950px;
+
+  h2 {
+    margin: 0;
+    font-size: clamp(45px, 5.3vw, 78px);
+    line-height: 1.02;
+    font-weight: 400;
+    letter-spacing: -3px;
+    color: #fff;
+  }
+}
+
+/* ===== LINKS ===== */
+.impact-expertise-links { width: 100%; }
+
+.impact-expertise-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 21px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: padding 0.3s ease;
+
+  &:last-child { border-bottom: 1px solid rgba(255, 255, 255, 0.45); }
+
+  &:hover {
+    padding-left: 12px;
+
+    .impact-link-arrow { transform: translate(5px, -5px); }
+  }
+}
+
+.impact-link-arrow {
+  font-size: 23px;
+  transition: transform 0.3s ease;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 992px) {
+  .impact-expertise-inner {
+    min-height: 600px;
+    padding: 70px 5vw;
+  }
+
+  .impact-expertise-content {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .impact-expertise-links { max-width: 450px; }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 576px) {
+  .impact-expertise-inner {
+    min-height: 650px;
+    padding: 50px 25px;
+  }
+
+  .impact-expertise-heading h2 {
+    font-size: 40px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+  }
+
+  .impact-expertise-content { gap: 45px; }
+
+  .impact-expertise-link {
+    font-size: 16px;
+    padding: 18px 0;
+  }
+}

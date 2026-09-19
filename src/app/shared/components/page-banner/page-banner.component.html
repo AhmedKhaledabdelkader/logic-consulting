@@ -1,0 +1,36 @@
+<section class="page-banner">
+
+  @if (image()) {
+    <img class="page-banner-img" [src]="image()" alt="">
+  }
+  <div class="page-banner-overlay"></div>
+
+  <div class="container page-banner-inner">
+
+    <nav class="crumbs" aria-label="breadcrumb">
+      @for (b of breadcrumbs(); track b.label; let last = $last) {
+        @if (b.path && !last) {
+          <a [routerLink]="b.path">{{ b.label }}</a>
+          <span class="sep">/</span>
+        } @else {
+          <span class="current">{{ b.label }}</span>
+        }
+      }
+    </nav>
+
+    <div class="banner-row">
+      <h1>{{ title() }}</h1>
+
+      <ul class="share">
+        @for (s of shareLinks(); track s.label) {
+          <li>
+            <a [href]="s.href" target="_blank" rel="noopener" [attr.aria-label]="'Share on ' + s.label">
+              <i class="bi" [class]="s.icon"></i>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+
+  </div>
+</section>
