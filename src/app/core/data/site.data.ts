@@ -2,36 +2,11 @@ import { HeroVideo, ImpactExpertise, IndustryPage, RegionalSection, ServiceSumma
 import { ExpertiseGroup, Insight, NavItem, Office, Slide, Stat } from '../models/site.models';
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Industries', children: [
-    { label: 'Government & Public Sector', path: '/industries/government' },
-    { label: 'Hospitality, Hajj & Umrah', path: '/industries/hospitality' },
-    { label: 'Sports', path: '/industries/sports' },
-    { label: 'Real Estate', path: '/industries/real-estate' },
-    { label: 'Pharma and Healthcare', path: '/industries/pharma' },
-    { label: 'Energy', path: '/industries/energy' },
-    { label: 'Retail', path: '/industries/retail' },
-  ]},
-  { label: 'Services', children: [
-    { label: 'Strategy', path: '/services/strategy' },
-    { label: 'Corporate & Family Governance', path: '/services/governance' },
-    { label: 'Digital Transformation', path: '/services/digital' },
-    { label: 'People & Organizations', path: '/services/people' },
-    { label: 'AI Adoption', path: '/services/ai' },
-    { label: 'Supply Chain Consulting', path: '/services/supply-chain' },
-    { label: 'Operational Excellence', path: '/services/operational-excellence' },
-  ]},
-  { label: 'Family Business', path: '/family-business' },
-  { label: 'Insights', children: [
-    { label: 'Egypt', path: '/insights/egypt' },
-    { label: 'KSA', path: '/insights/ksa' },
-    { label: 'UAE', path: '/insights/uae' },
-  ]},
-  { label: 'About Us', children: [
-    { label: 'Who We Are', path: '/about/who-we-are' },
-    { label: 'Our People & Leadership', path: '/about/leadership' },
-    { label: 'Our Clients', path: '/about/clients' },
-  ]},
-  { label: 'Careers', path: '/careers' },
+  
+  { label: 'Insights', path: '/insights' },
+
+  { label: 'About Us', path: '/about' },
+ 
 ];
 
 export const SLIDES: Slide[] = [
@@ -96,18 +71,21 @@ export const EXPERTISE: ExpertiseGroup[] = [
 
 export const INSIGHTS: Insight[] = [
   {
+    id:1,
     title: 'Building a Sustainable Sports Economy | From sporting ambition to lasting economic value',
     tag: 'Sports',
     slug: 'sports-economy',
     image: 'images/insight-sports.webp',
   },
   {
+     id:2,
     title: 'Beyond Mega Projects | The Next Phase of Saudi Tourism',
     tag: 'Tourism & Culture',
     slug: 'saudi-tourism',
     image: 'images/insight-tourism.webp',
   },
   {
+     id:3,
     title: 'The Role of AI in the Construction Industry',
     tag: 'AI',
     slug: 'ai-construction',
@@ -225,11 +203,11 @@ export const INDUSTRY_PAGES: IndustryPage[] = [
     },
 
     insights: [
-      { title: 'Oman’s 11th Five-Year Development Plan 2026–2030', tag: 'Government',
+      { id:1,title: 'Oman’s 11th Five-Year Development Plan 2026–2030', tag: 'Government',
         slug: 'omans-11th-five-year-development-plan', image: 'images/insight-sports.webp' },
-      { title: 'Governing Under Uncertainty – Part 2', tag: 'Government',
+      { id:2,title: 'Governing Under Uncertainty – Part 2', tag: 'Government',
         slug: 'governing-under-uncertainty-2', image: 'images/insight-tourism.webp' },
-      { title: 'Governing Under Uncertainty', tag: 'Government',
+      { id:3,title: 'Governing Under Uncertainty', tag: 'Government',
         slug: 'governing-under-uncertainty', image: 'images/insight-construction.webp' },
     ],
 

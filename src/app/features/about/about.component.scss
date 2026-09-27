@@ -1,0 +1,823 @@
+
+//-------------------------------------------------------------
+// Palette
+// --------------------------------------------------------------
+
+:host {
+  --lc-primary: #0d2b3e;
+  --lc-accent: #d4a24c;
+  --lc-surface: #f7f5f1;
+  --lc-text: #1c1c1c;
+  --lc-text-muted: #5a5a5a;
+  --lc-radius: 14px;
+
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+
+  color: var(--lc-text);
+  font-family: inherit;
+
+  scroll-behavior: smooth;
+
+  // Prevent any child element from creating horizontal scrolling.
+  overflow-x: hidden;
+}
+
+
+// --------------------------------------------------------------
+// Anchor offsets
+// --------------------------------------------------------------
+
+#story,
+#values,
+#presence {
+  scroll-margin-top: 84px;
+}
+
+
+// --------------------------------------------------------------
+// Section labels
+// --------------------------------------------------------------
+
+.section-label {
+  display: inline-block;
+
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: var(--lc-accent);
+  font-weight: 600;
+
+  margin-bottom: 0.75rem;
+
+  &.center {
+    display: block;
+    text-align: center;
+  }
+}
+
+.center {
+  text-align: center;
+}
+
+
+// --------------------------------------------------------------
+// HERO
+// --------------------------------------------------------------
+
+.about-hero {
+  position: relative;
+
+  min-height: 60vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 6rem 1.5rem;
+
+  background:
+    linear-gradient(
+      160deg,
+      var(--lc-primary) 0%,
+      #1a4a63 100%
+    );
+
+  color: #fff;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+.about-hero-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(212, 162, 76, 0.18),
+      transparent 55%
+    );
+
+  pointer-events: none;
+}
+
+.about-hero-content {
+  position: relative;
+
+  width: 100%;
+  max-width: 720px;
+  min-width: 0;
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+
+    font-weight: 700;
+    line-height: 1.15;
+
+    margin: 0.5rem 0 1.25rem;
+
+    overflow-wrap: break-word;
+  }
+}
+
+.about-eyebrow {
+  font-size: 0.8rem;
+
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: var(--lc-accent);
+
+  font-weight: 600;
+}
+
+.about-hero-lead {
+  font-size: 1.1rem;
+
+  color: rgba(255, 255, 255, 0.85);
+
+  margin: 0 auto;
+
+  max-width: 700px;
+
+  overflow-wrap: break-word;
+}
+
+
+// --------------------------------------------------------------
+// STICKY SUBNAV
+// --------------------------------------------------------------
+
+.about-subnav {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 20;
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 2.5rem;
+
+  padding: 1rem 1.5rem;
+
+  background: #fff;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.04);
+
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 100%;
+
+  a {
+    color: var(--lc-primary);
+
+    font-weight: 600;
+
+    font-size: 0.9rem;
+
+    text-decoration: none;
+
+    padding-bottom: 0.25rem;
+
+    border-bottom: 2px solid transparent;
+
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--lc-accent);
+
+      border-color: var(--lc-accent);
+    }
+  }
+}
+
+
+// --------------------------------------------------------------
+// STORY
+// --------------------------------------------------------------
+
+.about-story {
+  width: 100%;
+  max-width: 100%;
+
+  padding: 5rem 1.5rem;
+
+  background: #fff;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+.about-story-grid {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  // minmax(0, 1fr) prevents content/images
+  // from forcing horizontal scrolling.
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(0, 0.9fr);
+
+  gap: 3rem;
+
+  align-items: center;
+
+  box-sizing: border-box;
+
+  @media (max-width: 860px) {
+    grid-template-columns: minmax(0, 1fr);
+
+    gap: 2rem;
+  }
+}
+
+
+// --------------------------------------------------------------
+// STORY TEXT
+// --------------------------------------------------------------
+
+.about-story-text {
+  min-width: 0;
+
+  h2 {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+
+    margin-bottom: 1rem;
+
+    overflow-wrap: break-word;
+  }
+
+  p {
+    color: var(--lc-text-muted);
+
+    line-height: 1.7;
+
+    margin-bottom: 1rem;
+
+    overflow-wrap: break-word;
+
+    word-break: normal;
+  }
+}
+
+
+// --------------------------------------------------------------
+// STORY IMAGE
+// --------------------------------------------------------------
+
+.about-story-visual {
+  width: 100%;
+  max-width: 480px;
+
+  min-width: 0;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  overflow: hidden;
+
+  border-radius: var(--lc-radius);
+
+  box-sizing: border-box;
+}
+
+.about-story-image {
+  display: block;
+
+  // Never allow the image to become wider than its container.
+  width: 100%;
+  max-width: 100%;
+
+  // Control the actual displayed height.
+  height: 320px;
+
+  // Prevent the original image dimensions from
+  // determining the layout.
+  object-fit: cover;
+
+  object-position: center;
+
+  border-radius: var(--lc-radius);
+
+  box-sizing: border-box;
+
+  // Prevent inline-image whitespace/layout issues.
+  vertical-align: middle;
+}
+
+
+// --------------------------------------------------------------
+// VALUES
+// --------------------------------------------------------------
+
+.about-values {
+  width: 100%;
+  max-width: 100%;
+
+  padding: 5rem 1.5rem;
+
+  background: var(--lc-surface);
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  h2 {
+    max-width: 640px;
+
+    margin: 0 auto 3rem;
+
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+
+    overflow-wrap: break-word;
+  }
+}
+
+
+// --------------------------------------------------------------
+// VALUES CAROUSEL
+// --------------------------------------------------------------
+
+.values-carousel {
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 1rem;
+
+  min-width: 0;
+}
+
+.values-track {
+  flex: 1 1 auto;
+
+  min-width: 0;
+
+  display: flex;
+
+  gap: 1.5rem;
+
+  overflow-x: auto;
+
+  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+
+  padding: 0.5rem 0.25rem 1rem;
+
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.value-card {
+  flex: 0 0 clamp(220px, 26vw, 280px);
+
+  scroll-snap-align: center;
+
+  background: #fff;
+
+  border-radius: var(--lc-radius);
+
+  padding: 2rem 1.5rem;
+
+  text-align: center;
+
+  box-shadow:
+    0 6px 24px rgba(13, 43, 62, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  box-sizing: border-box;
+
+  &:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+      0 12px 28px rgba(13, 43, 62, 0.1);
+  }
+
+  i {
+    font-size: 1.8rem;
+
+    color: var(--lc-accent);
+
+    margin-bottom: 0.75rem;
+
+    display: inline-block;
+  }
+
+  h3 {
+    font-size: 1.05rem;
+
+    margin-bottom: 0.5rem;
+
+    overflow-wrap: break-word;
+  }
+
+  p {
+    font-size: 0.9rem;
+
+    color: var(--lc-text-muted);
+
+    line-height: 1.6;
+
+    overflow-wrap: break-word;
+  }
+}
+
+
+// --------------------------------------------------------------
+// CAROUSEL ARROWS
+// --------------------------------------------------------------
+
+.carousel-arrow {
+  flex: 0 0 auto;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(13, 43, 62, 0.15);
+
+  background: #fff;
+
+  color: var(--lc-primary);
+
+  font-size: 1.1rem;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--lc-primary);
+
+    color: #fff;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+
+    cursor: default;
+  }
+}
+
+
+// --------------------------------------------------------------
+// VALUES DOTS
+// --------------------------------------------------------------
+
+.values-dots {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 0.5rem;
+
+  margin-top: 1.25rem;
+}
+
+.values-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  background: rgba(13, 43, 62, 0.2);
+
+  cursor: pointer;
+
+  padding: 0;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+
+  &.active {
+    background: var(--lc-accent);
+
+    transform: scale(1.3);
+  }
+}
+
+
+// --------------------------------------------------------------
+// STATS BAND
+// --------------------------------------------------------------
+
+.about-stats {
+  width: 100%;
+  max-width: 100%;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 3rem;
+
+  padding: 3.5rem 1.5rem;
+
+  background: var(--lc-primary);
+
+  color: #fff;
+
+  box-sizing: border-box;
+}
+
+.about-stat {
+  text-align: center;
+
+  min-width: 0;
+
+  strong {
+    display: block;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    color: var(--lc-accent);
+  }
+
+  span {
+    font-size: 0.85rem;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    overflow-wrap: break-word;
+  }
+}
+
+
+// --------------------------------------------------------------
+// GLOBAL PRESENCE
+// --------------------------------------------------------------
+
+.about-presence {
+  width: 100%;
+  max-width: 100%;
+
+  padding: 5rem 1.5rem;
+
+  background: #fff;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  h2 {
+    max-width: 640px;
+
+    margin: 0 auto 3rem;
+
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+
+    overflow-wrap: break-word;
+  }
+}
+
+.about-offices-grid {
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 1.25rem;
+
+  box-sizing: border-box;
+
+  @media (max-width: 760px) {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns:
+      minmax(0, 1fr);
+  }
+}
+
+.office-card {
+  min-width: 0;
+
+  border: 1px solid rgba(13, 43, 62, 0.1);
+
+  border-radius: var(--lc-radius);
+
+  padding: 1.5rem;
+
+  text-align: center;
+
+  box-sizing: border-box;
+
+  h3 {
+    font-size: 1.05rem;
+
+    margin-bottom: 0.25rem;
+
+    overflow-wrap: break-word;
+  }
+
+  p {
+    font-size: 0.85rem;
+
+    color: var(--lc-text-muted);
+
+    overflow-wrap: break-word;
+  }
+}
+
+
+// --------------------------------------------------------------
+// CTA
+// --------------------------------------------------------------
+
+.about-cta {
+  width: 100%;
+  max-width: 100%;
+
+  padding: 5rem 1.5rem;
+
+  text-align: center;
+
+  background: var(--lc-surface);
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  h2 {
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+
+    margin-bottom: 1.5rem;
+
+    overflow-wrap: break-word;
+  }
+}
+
+.about-cta-button {
+  display: inline-block;
+
+  padding: 0.85rem 2.2rem;
+
+  border-radius: 999px;
+
+  background: var(--lc-primary);
+
+  color: #fff;
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--lc-accent);
+
+    color: var(--lc-primary);
+  }
+}
+
+
+// --------------------------------------------------------------
+// MOBILE
+// --------------------------------------------------------------
+
+@media (max-width: 860px) {
+
+  .about-story-visual {
+    max-width: 600px;
+  }
+
+  .about-story-image {
+    height: 300px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .about-subnav {
+    gap: 1rem;
+
+    padding: 0.85rem 0.75rem;
+
+    overflow-x: auto;
+
+    justify-content: flex-start;
+
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a {
+      font-size: 0.8rem;
+    }
+  }
+
+  .about-story {
+    padding: 4rem 1rem;
+  }
+
+  .about-story-image {
+    height: 260px;
+  }
+
+  .about-values {
+    padding: 4rem 1rem;
+  }
+
+  .about-presence {
+    padding: 4rem 1rem;
+  }
+
+  .about-cta {
+    padding: 4rem 1rem;
+  }
+
+  .values-carousel {
+    gap: 0.5rem;
+  }
+
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .about-hero {
+    min-height: 55vh;
+
+    padding: 5rem 1rem;
+  }
+
+  .about-story-image {
+    height: 220px;
+  }
+
+  .value-card {
+    flex-basis: 240px;
+  }
+
+  .about-stats {
+    gap: 2rem;
+  }
+}
+
+
+

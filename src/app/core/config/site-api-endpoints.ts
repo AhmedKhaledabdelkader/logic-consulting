@@ -17,10 +17,12 @@ export const SITE_API = {
   stats: `${environment.apiUrl}/home/stats`,
   expertise: `${environment.apiUrl}/expertise`,
   insightsFeatured: `${environment.apiUrl}/insights/featured`,
+  insightsAll: `${environment.apiUrl}/insights`,
   offices: `${environment.apiUrl}/offices`,
   regional: `${environment.apiUrl}/home/regional`,
   video: `${environment.apiUrl}/home/video`,
   impactExpertise: `${environment.apiUrl}/impact-expertise`,
   services: `${environment.apiUrl}/services`,
   industry: (slug: string) => `${environment.apiUrl}/industries/${slug}`,
+  about:`${environment.apiUrl}/about-page`,
 };

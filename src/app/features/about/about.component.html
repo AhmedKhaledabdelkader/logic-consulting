@@ -1,0 +1,307 @@
+@if (loading()) {
+
+  <section class="about-loading">
+    <p>Loading About Us...</p>
+  </section>
+
+} @else if (about()) {
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="about-hero-overlay"></div>
+
+    <div class="about-hero-content">
+      <span class="about-eyebrow">About Us</span>
+
+      <h1>
+        {{ about()!.hero_title }}
+      </h1>
+
+      <p class="about-hero-lead">
+        {{ about()!.hero_subtitle }}
+      </p>
+    </div>
+  </section>
+
+
+  <!-- STICKY IN-PAGE NAV -->
+  <nav class="about-subnav">
+
+    <a
+      href="#story"
+      (click)="scrollToSection('story', $event)"
+    >
+      Our Story
+    </a>
+
+    <a
+      href="#values"
+      (click)="scrollToSection('values', $event)"
+    >
+      What We Value
+    </a>
+
+    <a
+      href="#presence"
+      (click)="scrollToSection('presence', $event)"
+    >
+      Global Presence
+    </a>
+
+  </nav>
+
+
+  <!-- STORY -->
+  <section id="story" class="about-story">
+
+    <div class="about-story-grid">
+
+      <div class="about-story-text">
+
+        <span class="section-label">
+          Our Story
+        </span>
+
+        <h2>
+          {{ about()!.story_title }}
+        </h2>
+
+        <p>
+          {{ about()!.story_paragraph }}
+        </p>
+
+      </div>
+
+
+      <div class="about-story-visual">
+
+        @if (about()!.story_image) {
+
+          <img
+            [src]="about()!.story_image!"
+            alt="Our Story"
+            class="about-story-image"
+          />
+
+        } @else {
+
+          <div class="about-story-image"></div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- VALUES CAROUSEL -->
+  <section id="values" class="about-values">
+
+    <span class="section-label center">
+      What We Value
+    </span>
+
+    <h2 class="center">
+      The principles behind every engagement
+    </h2>
+
+
+    @if (about()!.values.length) {
+
+      <div class="values-carousel">
+
+        <!-- PREVIOUS -->
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-prev"
+          (click)="prevValue()"
+          [disabled]="activeValueIndex() === 0"
+          aria-label="Previous value"
+        >
+          <i class="bi bi-chevron-left"></i>
+        </button>
+
+
+        <!-- VALUES -->
+        <div
+          class="values-track"
+          #valuesTrack
+        >
+
+          @for (
+            value of about()!.values;
+            track value.title
+          ) {
+
+            <div class="value-card">
+
+              <i
+                class="bi"
+                [class]="value.icon"
+              ></i>
+
+              <h3>
+                {{ value.title }}
+              </h3>
+
+              <p>
+                {{ value.subtitle }}
+              </p>
+
+            </div>
+
+          }
+
+        </div>
+
+
+        <!-- NEXT -->
+        <button
+          type="button"
+          class="carousel-arrow carousel-arrow-next"
+          (click)="nextValue()"
+          [disabled]="
+            activeValueIndex() === about()!.values.length - 1
+          "
+          aria-label="Next value"
+        >
+          <i class="bi bi-chevron-right"></i>
+        </button>
+
+      </div>
+
+
+      <!-- DOTS -->
+      <div class="values-dots">
+
+        @for (
+          value of about()!.values;
+          track value.title;
+          let i = $index
+        ) {
+
+          <button
+            type="button"
+            class="values-dot"
+            [class.active]="
+              i === activeValueIndex()
+            "
+            (click)="goToValue(i)"
+            [attr.aria-label]="'Go to ' + value.title"
+          ></button>
+
+        }
+
+      </div>
+
+    }
+
+  </section>
+
+
+  <!-- STATS -->
+  @if (stats().length) {
+
+    <section class="about-stats">
+
+      @for (s of stats(); track s.title) {
+
+        <div class="about-stat">
+
+          <strong>
+            {{ s.number }}
+          </strong>
+
+          <span>
+            {{ s.title }}
+          </span>
+
+        </div>
+
+      }
+
+    </section>
+
+  }
+
+
+  <!-- GLOBAL PRESENCE -->
+  <section
+    id="presence"
+    class="about-presence"
+  >
+
+    <span class="section-label center">
+      Global Presence
+    </span>
+
+    <h2 class="center">
+      Where we operate
+    </h2>
+
+
+    @if (about()!.presence.length) {
+
+      <div class="about-offices-grid">
+
+        @for (
+          office of about()!.presence;
+          track office.title
+        ) {
+
+          <div class="office-card">
+
+            <h3>
+              {{ office.title }}
+            </h3>
+
+            <p>
+              {{ office.subtitle }}
+            </p>
+
+          </div>
+
+        }
+
+      </div>
+
+    } @else {
+
+      <p class="center">
+        No presence information available.
+      </p>
+
+    }
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="about-cta">
+
+    <h2>
+      Let's talk about what you're solving for.
+    </h2>
+
+    <a
+      routerLink="/contact"
+      class="about-cta-button"
+    >
+      Get in touch
+    </a>
+
+  </section>
+
+} @else {
+
+  <section class="about-error">
+
+    <p>
+      Unable to load About Us content.
+    </p>
+
+  </section>
+
+}

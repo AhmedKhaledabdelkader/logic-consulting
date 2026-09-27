@@ -9,7 +9,7 @@ import { SiteContentService } from '../../core/services/site-content.service';
   template: `
   <nav class="navbar navbar-expand-lg navbar-dark bg-brand-dark sticky-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand fw-bold fs-4" routerLink="/">LOGIC<span class="text-accent">.</span></a>
+      <a class="navbar-brand fw-bold fs-4" routerLink="/">Houida Consulting<span class="text-accent">.</span></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -31,6 +31,8 @@ import { SiteContentService } from '../../core/services/site-content.service';
               </li>
             }
           }
+
+          
           <li class="nav-item ms-lg-3">
             <a class="btn btn-accent btn-sm px-3" routerLink="/contact">Contact Us</a>
           </li>

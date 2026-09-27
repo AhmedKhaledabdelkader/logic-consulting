@@ -19,6 +19,7 @@ export interface RegionalSection {
 
 
 export interface Insight {
+  id:number;
   title: string;
   tag: string;
   slug: string;

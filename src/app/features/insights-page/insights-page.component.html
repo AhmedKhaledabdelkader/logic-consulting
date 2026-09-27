@@ -1,0 +1,36 @@
+<!-- HERO -->
+<section class="insights-hero">
+  <div class="insights-hero-overlay"></div>
+  <div class="insights-hero-content">
+    <span class="insights-eyebrow">Insights</span>
+    <h1>Insights</h1>
+    <p class="insights-hero-lead">
+      Perspective and analysis from the teams doing the work.
+    </p>
+  </div>
+</section>
+
+<!-- CARD GRID -->
+<section class="insights-list">
+
+  @if (loading()) {
+    <p class="center">Loading insights…</p>
+  } @else if (insights().length === 0) {
+    <p class="center">No insights published yet.</p>
+  } @else {
+    <div class="insights-grid">
+      @for (item of insights(); track item.id) {
+        <article class="insight-card">
+          <div
+            class="insight-card-image"
+            [style.backgroundImage]="'url(' + item.image + ')'"
+          ></div>
+          <div class="insight-card-body">
+            <h3>{{ item.title }}</h3>
+          </div>
+        </article>
+      }
+    </div>
+  }
+
+</section>
