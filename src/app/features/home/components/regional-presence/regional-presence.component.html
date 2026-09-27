@@ -9,7 +9,7 @@
 
         <h2>{{ r.title }}</h2>
 
-        @for (p of r.paragraphs; track $index) {
+        @for (p of r.paragraph; track $index) {
           <p>{{ p }}</p>
         }
       </div>
@@ -17,7 +17,7 @@
       <!-- Right image -->
       <div class="regional-visual">
         <div class="regional-image">
-          <img [src]="r.image" [alt]="r.imageAlt">
+          <img [src]="environment+r.image" [alt]="r.imageAlt">
         </div>
       </div>
 
@@ -25,10 +25,10 @@
 
     <!-- Statistics -->
     <div class="regional-stats">
-      @for (s of stats(); track s.label) {
+      @for (s of stats(); track s.title) {
         <div class="regional-stat">
-          <strong>{{ s.value }}</strong>
-          <span>{{ s.label }}</span>
+          <strong>{{ s.number }}</strong>
+          <span>{{ s.title }}</span>
         </div>
       }
     </div>

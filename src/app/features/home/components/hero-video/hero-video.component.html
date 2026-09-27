@@ -15,13 +15,15 @@
     </div>
 
     <!-- Content on top of the video -->
-    @if (impact(); as d) {
+    @if (video(); as d) {
       <div class="impact-content">
 
-        <h2 class="impact-title">{{ d.label }}</h2>
+        <h2 class="impact-title">{{ d.title }}</h2>
 
-        <p class="impact-subtitle">{{ d.title }}</p>
+        <p class="impact-subtitle">{{ d.subtitle }}</p>
+      
 
+      @if (impact(); as d) {
         <div class="impact-buttons">
           @for (l of d.links; track l.path; let first = $first) {
             <a class="impact-btn" [class.impact-btn--dark]="first" [class.impact-btn--light]="!first"
@@ -31,9 +33,10 @@
             </a>
           }
         </div>
-
+      }
+    
       </div>
     }
-
+    
   </section>
 }

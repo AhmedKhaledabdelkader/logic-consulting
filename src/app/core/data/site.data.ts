@@ -50,7 +50,7 @@ export const SLIDES: Slide[] = [
   {
     category: 'Family Business',
     title: 'Family Business\nFor Governance & Legacy',
-    description: 'Safeguarding family business legacies & securing multi-generational continuity.',
+    subtitle: 'Safeguarding family business legacies & securing multi-generational continuity.',
     image: 'images/Family-SLIDER-scaled.png',
     link: { label: 'Read More', path: '/family-business' },
   },
@@ -63,16 +63,16 @@ export const SLIDES: Slide[] = [
 ];
 
 export const STATS: Stat[] = [
-  { value: '28+',   label: 'Years of Trusted Regional Expertise' },
-  { value: '2000+', label: 'Successful Projects Delivered with Measurable Impact' },
-  { value: '30+',   label: 'Industries Covered' },
-  { value: '120+',  label: 'Consultants & Employees' },
+  { number: '28+',   title: 'Years of Trusted Regional Expertise' },
+  { number: '2000+', title: 'Successful Projects Delivered with Measurable Impact' },
+  { number: '30+',   title: 'Industries Covered' },
+  { number: '120+',  title: 'Consultants & Employees' },
 ];
 
 export const REGIONAL: RegionalSection = {
   label: 'Regional Consulting Partner',
   title: 'Local Presence.\nRegional Scale.\nEnduring Impact.',
-  paragraphs: [
+  paragraph: [
     'LOGIC Consulting exists to shape what’s next for organizations across the MENA region. For 28 years, we have worked with governments, family enterprises, and leading corporates to navigate uncertainty, capture new opportunities, and build resilient organizations.',
     'Anchored in deep regional understanding and elevated by global thinking, we do more than consult, we challenge, align, and enable leaders to move decisively in moments that matter.',
     'At LOGIC, impact is not episodic; it is cumulative, compounding, and built through long-term partnership.',
@@ -124,8 +124,9 @@ export const OFFICES: Office[] = [
 ];
 
 export const HERO_VIDEO: HeroVideo = {
-  youtubeId: 'lY8zvsXEv28',
+  youtubeUrl: 'lY8zvsXEv28',
   title: 'LOGIC Consulting',
+  subtitle:"ggggggg"
 };
 
 export const IMPACT_EXPERTISE: ImpactExpertise = {

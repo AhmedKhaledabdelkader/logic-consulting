@@ -9,7 +9,7 @@
 
     <div class="cards-grid">
       @for (i of insights(); track i.slug) {
-        <app-content-card [title]="i.title" [image]="i.image" [link]="['/insights', i.slug]" />
+        <app-content-card [title]="i.title" [image]="environment+i.image" [link]="['/insights', i.slug]" />
       }
     </div>
 

@@ -1,3 +1,4 @@
+import { environment } from './../../../../../environments/environment.development';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
@@ -15,6 +16,8 @@ export class HeroSliderComponent {
 
   slides = toSignal(inject(SiteContentService).getSlides(), { initialValue: [] });
   index = signal(0);
+  environment=environment.mediaUrl
+
 
   constructor() {
     this.start();

@@ -17,13 +17,41 @@ export class HeroVideoComponent {
   video = toSignal(this.content.getVideo());
   impact = toSignal(this.content.getImpactExpertise());
 
+   getYoutubeId = (url: string): string | null => {
+  try {
+    const parsedUrl = new URL(url);
+
+    // https://www.youtube.com/watch?v=VIDEO_ID
+    if (parsedUrl.hostname.includes('youtube.com')) {
+      return parsedUrl.searchParams.get('v');
+    }
+
+    // https://youtu.be/VIDEO_ID
+    if (parsedUrl.hostname === 'youtu.be') {
+      return parsedUrl.pathname.substring(1);
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+};
+
   url = computed(() => {
     const v = this.video();
+    console.log(v);
+  
+    
+    
     if (!v) return null;
-    const id = v.youtubeId;
+    const id =this.getYoutubeId(v.youtubeUrl);
+    console.log(id);
+    
     return this.sanitizer.bypassSecurityTrustResourceUrl(
       `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}` +
       `&controls=0&rel=0&modestbranding=1`
     );
   });
+
+  
 }

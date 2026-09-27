@@ -5,18 +5,18 @@
       <div class="hero-slide" [class.active]="i === index()" [attr.aria-hidden]="i !== index()">
 
         <div class="hero-image">
-          <img [src]="s.image" [alt]="s.title">
+          <img [src]="environment+s.image" [alt]="s.title">
         </div>
 
         <div class="hero-content">
           <span class="hero-category">{{ s.category }}</span>
           <h1>{{ s.title }}</h1>
-          @if (s.description) {
-            <p>{{ s.description }}</p>
+          @if (s.subtitle) {
+            <p>{{ s.subtitle }}</p>
           }
-          <a class="hero-link" [routerLink]="s.link.path">
+         <!-- <a class="hero-link" [routerLink]="s.link.path">
             {{ s.link.label }} <span>→</span>
-          </a>
+          </a>-->
         </div>
 
       </div>

@@ -4,15 +4,15 @@ export interface NavItem { label: string; path?: string; children?: NavLink[]; }
 export interface Slide {
   category: string;
   title: string;          // use \n for a line break
-  description?: string;
+  subtitle?: string;
   image: string;
   link: NavLink;
 }
-export interface Stat { value: string; label: string; }
+export interface Stat { number: string; title: string; }
 export interface RegionalSection {
   label: string;
   title: string;          // use \n for line breaks
-  paragraphs: string[];
+  paragraph: string[];
   image: string;
   imageAlt: string;
 }
@@ -29,8 +29,9 @@ export interface Office { country: string; city: string; phone?: string; address
 export interface ExpertiseGroup { title: string; icon: string; items: NavLink[]; }
 
 export interface HeroVideo {
-  youtubeId: string;
+  youtubeUrl: string;
   title: string;
+  subtitle:string
 }
 
 export interface ImpactExpertise {
