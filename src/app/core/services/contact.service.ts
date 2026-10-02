@@ -13,7 +13,7 @@ import {
 export class ContactService {
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl = 'https://dallas-clean-level-thru.trycloudflare.com/api/contact';
+  private readonly apiUrl = 'https://examine-enables-couple-ntsc.trycloudflare.com/api/contact';
 
   sendContact(data: ContactPayload): Observable<ContactApiResponse> {
     return this.http.post<ContactApiResponse>(
