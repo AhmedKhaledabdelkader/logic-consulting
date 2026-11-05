@@ -5,6 +5,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  computed,
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -30,6 +31,22 @@ export class AboutComponent implements OnInit {
   about = signal<AboutPage | null>(null);
 
   stats = signal<Stat[]>([]);
+
+  /** Splits the long story text into a lead sentence group + readable paragraphs. */
+  storyParts = computed(() => {
+    const text = (this.about()?.story_paragraph ?? '').trim();
+    const sentences = text.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g)?.map(x => x.trim()) ?? [];
+    if (sentences.length <= 3) {
+      return { lead: text, paragraphs: [] as string[] };
+    }
+    const lead = sentences.slice(0, 2).join(' ');
+    const rest = sentences.slice(2);
+    const paragraphs: string[] = [];
+    for (let i = 0; i < rest.length; i += 3) {
+      paragraphs.push(rest.slice(i, i + 3).join(' '));
+    }
+    return { lead, paragraphs };
+  });
 
   @ViewChild('valuesTrack')
   private valuesTrack?: ElementRef<HTMLElement>;

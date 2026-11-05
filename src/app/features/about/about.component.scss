@@ -218,116 +218,134 @@
 
 .about-story {
   width: 100%;
-  max-width: 100%;
-
-  padding: 5rem 1.5rem;
-
-  background: #fff;
-
+  padding: 6rem 1.5rem;
+  background: linear-gradient(180deg, #fff 0%, var(--lc-surface, #f6f8fb) 100%);
   box-sizing: border-box;
-
   overflow: hidden;
 }
 
 .about-story-grid {
   width: 100%;
-  max-width: 1100px;
-
+  max-width: 1200px;
   margin: 0 auto;
-
   display: grid;
-
-  // minmax(0, 1fr) prevents content/images
-  // from forcing horizontal scrolling.
-  grid-template-columns:
-    minmax(0, 1.1fr)
-    minmax(0, 0.9fr);
-
-  gap: 3rem;
-
-  align-items: center;
-
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 4rem;
+  align-items: stretch;
   box-sizing: border-box;
 
-  @media (max-width: 860px) {
+  @media (max-width: 900px) {
     grid-template-columns: minmax(0, 1fr);
-
-    gap: 2rem;
+    gap: 2.5rem;
   }
 }
 
-
-// --------------------------------------------------------------
-// STORY TEXT
-// --------------------------------------------------------------
-
 .about-story-text {
   min-width: 0;
+  align-self: center;
 
   h2 {
-    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
-
-    margin-bottom: 1rem;
-
+    font-size: clamp(1.9rem, 3vw, 2.7rem);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
     overflow-wrap: break-word;
   }
 
   p {
     color: var(--lc-text-muted);
-
-    line-height: 1.7;
-
-    margin-bottom: 1rem;
-
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 1.1rem;
     overflow-wrap: break-word;
+  }
 
-    word-break: normal;
+  .story-lead {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    font-weight: 500;
+    color: var(--lc-text, #1c2430);
+    padding-left: 1.1rem;
+    border-left: 4px solid var(--lc-accent);
+    margin-bottom: 1.5rem;
   }
 }
 
-
-// --------------------------------------------------------------
-// STORY IMAGE
-// --------------------------------------------------------------
-
 .about-story-visual {
-  width: 100%;
-  max-width: 480px;
-
   min-width: 0;
+  display: flex;
+  align-items: stretch;
+  padding: 0 1.25rem 1.25rem 0;   // room for the offset frame
 
-  margin-left: auto;
-  margin-right: auto;
+  @media (max-width: 900px) {
+    padding: 0 1rem 1rem 0;
+  }
+}
 
-  overflow: hidden;
+.about-story-frame {
+  position: relative;
+  width: 100%;
+  min-height: 460px;
+  border-radius: var(--lc-radius, 16px);
 
-  border-radius: var(--lc-radius);
+  // offset accent frame behind the image
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 1.25rem -1.25rem -1.25rem 1.25rem;
+    border: 3px solid var(--lc-accent);
+    border-radius: inherit;
+    opacity: 0.55;
+    z-index: 0;
+  }
 
-  box-sizing: border-box;
+  @media (max-width: 900px) {
+    min-height: 340px;
+  }
 }
 
 .about-story-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: block;
-
-  // Never allow the image to become wider than its container.
   width: 100%;
-  max-width: 100%;
-
-  // Control the actual displayed height.
-  height: 320px;
-
-  // Prevent the original image dimensions from
-  // determining the layout.
+  height: 100%;
   object-fit: cover;
-
   object-position: center;
+  border-radius: inherit;
+  background: var(--lc-surface, #e9edf2);
+  box-shadow: 0 24px 50px -18px rgba(15, 30, 55, 0.35);
+}
 
-  border-radius: var(--lc-radius);
+.about-story-badge {
+  position: absolute;
+  z-index: 2;
+  left: -1.25rem;
+  bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.4rem;
+  background: var(--lc-accent);
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.35);
 
-  box-sizing: border-box;
+  strong {
+    font-size: 2.2rem;
+    line-height: 1;
+  }
 
-  // Prevent inline-image whitespace/layout issues.
-  vertical-align: middle;
+  span {
+    font-size: 0.8rem;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 900px) {
+    left: 0.75rem;
+  }
 }
 
 

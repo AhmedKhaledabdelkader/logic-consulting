@@ -23,6 +23,8 @@ export const SITE_API = {
   video: `${environment.apiUrl}/home/video`,
   impactExpertise: `${environment.apiUrl}/impact-expertise`,
   services: `${environment.apiUrl}/services`,
+  workStepsActive: `${environment.apiUrl}/how-we-work?active=1`,
+  servicesActive: `${environment.apiUrl}/services?active=1`,
   industry: (slug: string) => `${environment.apiUrl}/industries/${slug}`,
   about:`${environment.apiUrl}/about-page`,
 };

@@ -66,28 +66,41 @@
           {{ about()!.story_title }}
         </h2>
 
-        <p>
-          {{ about()!.story_paragraph }}
+        <p class="story-lead">
+          {{ storyParts().lead }}
         </p>
+
+        @for (para of storyParts().paragraphs; track $index) {
+          <p>{{ para }}</p>
+        }
 
       </div>
 
 
       <div class="about-story-visual">
 
-        @if (about()!.story_image) {
+        <div class="about-story-frame">
 
-          <img
-            [src]="about()!.story_image!"
-            alt="Our Story"
-            class="about-story-image"
-          />
+          @if (about()!.story_image) {
 
-        } @else {
+            <img
+              [src]="about()!.story_image!"
+              alt="Our Story"
+              class="about-story-image"
+            />
 
-          <div class="about-story-image"></div>
+          } @else {
 
-        }
+            <div class="about-story-image"></div>
+
+          }
+
+          <div class="about-story-badge">
+            <strong>15+</strong>
+            <span>Years of<br />experience</span>
+          </div>
+
+        </div>
 
       </div>
 

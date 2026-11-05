@@ -1,0 +1,163 @@
+<!-- BANNER (same language as the site's page-banner) -->
+<section class="sv-hero">
+  <div class="sv-hero-overlay"></div>
+
+  <div class="sv-hero-inner">
+    <nav class="sv-crumbs" aria-label="breadcrumb">
+      <a routerLink="/">Home</a>
+      <span class="sep">/</span>
+      <span class="current">Services</span>
+    </nav>
+
+    <h1>What we do</h1>
+
+    @if (services().length) {
+      <ul class="sv-hero-stats">
+        <li><strong>{{ services().length }}</strong><span>Capability areas</span></li>
+        <li><strong>{{ totalItems() }}</strong><span>Specialised offerings</span></li>
+        <li><strong>15+</strong><span>Years of experience</span></li>
+      </ul>
+    }
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="sv-intro">
+  <div class="sv-container">
+
+    <div class="sv-intro-head">
+      <span class="sv-label">Our Services</span>
+      <h2>{{ introHeading() }}</h2>
+      <p>
+        {{ services().length === 1 ? 'This service' : 'Each service' }}
+        can be engaged on its own or combined into an end-to-end program.
+      </p>
+    </div>
+
+    @if (services().length) {
+      <div class="sv-overview">
+        @for (s of services(); track s.id; let i = $index) {
+          <a
+            class="sv-card"
+            [href]="'#' + s.slug"
+            (click)="scrollTo(s.slug, $event)"
+          >
+            <div class="sv-card-top">
+              <span class="sv-card-code">{{ codeFor(s, i) }}</span>
+              <i class="bi" [class]="iconFor(s, i)"></i>
+            </div>
+            <h3>{{ s.title }}</h3>
+            <span class="sv-card-more">
+              Explore <i class="bi bi-arrow-right"></i>
+            </span>
+          </a>
+        }
+      </div>
+    }
+
+  </div>
+</section>
+
+@if (loading()) {
+
+  <section class="sv-state">
+    <div class="sv-spinner"></div>
+    <p>Loading services…</p>
+  </section>
+
+} @else if (error()) {
+
+  <section class="sv-state">
+    <i class="bi bi-exclamation-circle"></i>
+    <p>We could not load the services right now. Please try again shortly.</p>
+  </section>
+
+} @else if (!services().length) {
+
+  <section class="sv-state">
+    <i class="bi bi-inbox"></i>
+    <p>Services will appear here soon.</p>
+  </section>
+
+} @else {
+
+  <!-- STICKY INDEX -->
+  <nav class="sv-index" aria-label="Services">
+    <div class="sv-index-track">
+      @for (s of services(); track s.id; let i = $index) {
+        <a
+          [href]="'#' + s.slug"
+          [class.on]="active() === s.slug"
+          (click)="scrollTo(s.slug, $event)"
+        >
+          <b>{{ codeFor(s, i) }}</b>
+          <span>{{ s.title }}</span>
+        </a>
+      }
+    </div>
+  </nav>
+
+  <!-- SERVICES -->
+  <div class="sv-list">
+    @for (s of services(); track s.id; let i = $index) {
+      <section
+        class="sv-block"
+        [class.alt]="i % 2 === 1"
+        [class.flip]="i % 2 === 1"
+        [id]="s.slug"
+      >
+        <div class="sv-container sv-block-inner">
+
+          <div class="sv-identity">
+            <span class="sv-code" aria-hidden="true">{{ codeFor(s, i) }}</span>
+
+            <span class="sv-label">Service {{ codeFor(s, i) }}</span>
+            <h2>{{ s.title }}</h2>
+            <p>{{ s.description }}</p>
+
+            <a class="sv-btn" routerLink="/contact">Discuss this service</a>
+          </div>
+
+          <div class="sv-offer">
+            @for (g of s.groups; track $index) {
+              <div class="sv-group">
+                @if (g.title) {
+                  <h3>{{ g.title }}</h3>
+                }
+                <ul>
+                  @for (item of g.items; track item.id) {
+                    <li>
+                      <i class="bi bi-arrow-right-short"></i>
+                      <span>{{ item.title }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+
+        </div>
+      </section>
+    }
+  </div>
+
+}
+
+<!-- CLOSING CTA -->
+@if (!loading()) {
+  <section class="sv-closing">
+    <div class="sv-container sv-closing-inner">
+      <div>
+        <span class="sv-label sv-label-light">Not sure where to start?</span>
+        <h2>Tell us the problem. We will help you design the right solution.</h2>
+        <p>See how we work, or talk to our team directly.</p>
+      </div>
+      <div class="sv-closing-actions">
+        <a class="sv-btn sv-btn-accent" routerLink="/how-we-work">
+          How we work <i class="bi bi-arrow-right"></i>
+        </a>
+        <a class="sv-btn sv-btn-ghost" routerLink="/contact">Contact us</a>
+      </div>
+    </div>
+  </section>
+}

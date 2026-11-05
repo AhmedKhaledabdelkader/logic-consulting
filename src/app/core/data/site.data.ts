@@ -2,7 +2,8 @@ import { HeroVideo, ImpactExpertise, IndustryPage, RegionalSection, ServiceSumma
 import { ExpertiseGroup, Insight, NavItem, Office, Slide, Stat } from '../models/site.models';
 
 export const NAV_ITEMS: NavItem[] = [
-  
+  { label: 'Services', path: '/services' },
+  { label: 'How We Work', path: '/how-we-work' },
   { label: 'Insights', path: '/insights' },
 
   { label: 'About Us', path: '/about' },

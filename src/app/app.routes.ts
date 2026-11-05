@@ -7,6 +7,8 @@ export const routes: Routes = [
    { path: 'about', title: 'About Us', loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent) },
 
    { path: 'insights', title: 'Insights', loadComponent: () => import('./features/insights-page/insights-page.component').then(m => m.InsightsPageComponent) },
+  { path: 'services', title: 'Our Services', loadComponent: () => import('./features/services-page/services-page.component').then(m => m.ServicesPageComponent) },
+  { path: 'how-we-work', title: 'How We Work', loadComponent: () => import('./features/how-we-work/how-we-work.component').then(m => m.HowWeWorkComponent) },
   { path: '**', redirectTo: '' },
 ];
 

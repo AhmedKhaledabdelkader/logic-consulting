@@ -1,0 +1,124 @@
+<!-- BANNER (same language as the site's page-banner) -->
+<section class="hw-hero">
+  <div class="hw-hero-glow"></div>
+
+  <div class="hw-hero-inner">
+    <nav class="hw-crumbs" aria-label="breadcrumb">
+      <a routerLink="/">Home</a>
+      <span class="sep">/</span>
+      <span class="current">How We Work</span>
+    </nav>
+
+    <h1>How We Work</h1>
+    <p class="hw-hero-lead">
+      Our consulting approach moves from understanding the problem to
+      delivering measurable business outcomes.
+    </p>
+
+    @if (steps().length) {
+      <ul class="hw-hero-path" aria-label="Process overview">
+        @for (s of steps(); track s.id) {
+          <li><b>{{ s.number }}</b> {{ s.title }}</li>
+        }
+      </ul>
+    }
+  </div>
+</section>
+
+@if (loading()) {
+
+  <section class="hw-state">
+    <div class="hw-spinner"></div>
+    <p>Loading our approach…</p>
+  </section>
+
+} @else if (error()) {
+
+  <section class="hw-state">
+    <i class="bi bi-exclamation-circle"></i>
+    <p>We could not load this section right now. Please try again shortly.</p>
+  </section>
+
+} @else if (!steps().length) {
+
+  <section class="hw-state">
+    <i class="bi bi-inbox"></i>
+    <p>Our approach will appear here soon.</p>
+  </section>
+
+} @else {
+
+  <!-- TIMELINE -->
+  <section class="hw-section">
+    <div class="hw-container">
+
+      <div class="hw-head">
+        <span class="hw-label">Our Approach</span>
+        <h2>From the first conversation to measurable results.</h2>
+        <p>{{ steps().length }} steps, one clear path from problem to outcome.</p>
+      </div>
+
+      <div class="hw-timeline" #timeline>
+
+        <!-- spine: track + animated progress fill -->
+        <div class="hw-spine" aria-hidden="true">
+          <div class="hw-spine-fill" [style.transform]="'scaleY(' + progress() + ')'"></div>
+        </div>
+
+        <ol class="hw-steps">
+          @for (st of steps(); track st.id; let i = $index) {
+            <li class="hw-step" [class.right]="i % 2 === 1">
+
+              <div class="hw-node" aria-hidden="true">
+                <span>{{ st.number }}</span>
+              </div>
+
+              <article class="hw-card">
+                <span class="hw-card-num" aria-hidden="true">{{ st.number }}</span>
+
+                <div class="hw-card-icon"><i class="bi" [class]="iconFor(st, i)"></i></div>
+
+                <h3>{{ st.title }}</h3>
+                <p>{{ st.description }}</p>
+
+                @if (st.outcome) {
+                  <div class="hw-outcome">
+                    <i class="bi bi-check2-circle"></i>
+                    <div>
+                      <span>Outcome</span>
+                      {{ st.outcome }}
+                    </div>
+                  </div>
+                }
+              </article>
+
+            </li>
+          }
+        </ol>
+
+        <!-- finish flag -->
+        <div class="hw-finish" aria-hidden="true">
+          <i class="bi bi-flag-fill"></i>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+}
+
+<!-- CLOSING CTA -->
+@if (!loading()) {
+  <section class="hw-closing">
+    <div class="hw-container hw-closing-inner">
+      <div>
+        <span class="hw-label hw-label-light">Let's talk</span>
+        <h2>Ready to turn your business challenge into measurable results?</h2>
+        <p>Get in touch with our team.</p>
+      </div>
+      <a class="hw-btn" routerLink="/contact">
+        Get in touch <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </section>
+}

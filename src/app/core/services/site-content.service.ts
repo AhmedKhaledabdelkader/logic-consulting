@@ -11,6 +11,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, map } from 'rxjs';
 
+import { WorkStep } from '../models/work-step.models';
+import { ServiceDetail } from '../models/service-page.models';
 import { ApiResponse } from '../models/siteApi.models';
 import { SITE_API } from '../config/site-api-endpoints';
 import { AboutPage } from '../models/about-page.models';
@@ -70,6 +72,34 @@ export class SiteContentService {
   getImpactExpertise(): Observable<ImpactExpertise> { return of(IMPACT_EXPERTISE); }
 
   getServices(): Observable<ServiceSummary[]> { return of(SERVICES); }
+
+  /** Public list of active "How We Work" steps (managed from the dashboard). */
+  getWorkSteps(): Observable<WorkStep[]> {
+    return this.http
+      .get<ApiResponse<WorkStep[]>>(SITE_API.workStepsActive)
+      .pipe(map(res => res.data ?? []));
+  }
+
+  /** Public list of active services (managed from the dashboard). */
+  getServiceDetails(): Observable<ServiceDetail[]> {
+    return this.http
+      .get<ApiResponse<ServiceDetail[]>>(SITE_API.servicesActive)
+      .pipe(
+        map(res =>
+          (res.data ?? []).map(s => ({
+            ...s,
+            groups: (s.groups ?? []).map(g => ({
+              ...g,
+              // strip the leading bullet/tab characters stored with the item text
+              items: g.items.map(i => ({
+                ...i,
+                title: i.title.replace(/^[\s•\-–*·]+/, '').trim(),
+              })),
+            })),
+          }))
+        )
+      );
+  }
 
   getInsights(): Observable<Insight[]> {
     return this.get<Insight[]>(SITE_API.insightsFeatured);
