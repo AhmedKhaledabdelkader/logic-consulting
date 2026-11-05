@@ -18,7 +18,7 @@ export class PageBannerComponent {
 
   shareLinks = computed(() => {
     const url = encodeURIComponent(this.doc.location.href);
-    const text = encodeURIComponent(`${this.title()} | LOGIC Consulting`);
+    const text = encodeURIComponent(`${this.title()} | Haytham Nagdy`);
     return [
       { icon: 'bi-envelope', label: 'Email', href: `mailto:?subject=${text}&body=${url}` },
       { icon: 'bi-linkedin', label: 'LinkedIn', href: `https://www.linkedin.com/sharing/share-offsite/?url=${url}` },

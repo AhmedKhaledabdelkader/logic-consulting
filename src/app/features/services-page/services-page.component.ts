@@ -62,20 +62,61 @@ export class ServicesPageComponent implements OnInit {
     return s.code || String.fromCharCode(65 + index);
   }
 
-  scrollTo(slug: string, event: Event): void {
-    event.preventDefault();
-    document.getElementById(slug)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    this.active.set(slug);
+  // ---------- service picker ----------
+  menuOpen = signal(false);
+
+  selectedIndex = computed(() => {
+    const i = this.services().findIndex(s => s.slug === this.active());
+    return i < 0 ? 0 : i;
+  });
+
+  selected = computed<ServiceDetail | null>(
+    () => this.services()[this.selectedIndex()] ?? null
+  );
+
+  /** One-item list so the @for re-creates the panel (and its animation) per service. */
+  selectedList = computed(() => {
+    const s = this.selected();
+    return s ? [s] : [];
+  });
+
+  toggleMenu(): void {
+    this.menuOpen.update(v => !v);
   }
 
-  @HostListener('window:scroll')
-  onScroll(): void {
+  select(slug: string): void {
+    this.active.set(slug);
+    this.menuOpen.set(false);
+  }
+
+  /** Previous (-1) / next (+1) service, wrapping around. */
+  neighbor(dir: -1 | 1): ServiceDetail | null {
     const list = this.services();
-    let current: string | null = list[0]?.slug ?? null;
-    for (const s of list) {
-      const el = document.getElementById(s.slug);
-      if (el && el.getBoundingClientRect().top <= 160) current = s.slug;
-    }
-    if (current !== this.active()) this.active.set(current);
+    if (!list.length) return null;
+    return list[(this.selectedIndex() + dir + list.length) % list.length];
+  }
+
+  step(dir: -1 | 1): void {
+    const n = this.neighbor(dir);
+    if (n) this.active.set(n.slug);
+  }
+
+  /** Overview card clicked: choose that service and bring the panel into view. */
+  pickFromCard(slug: string, event: Event): void {
+    event.preventDefault();
+    this.select(slug);
+    setTimeout(() =>
+      document.getElementById('explorer')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    );
+  }
+
+  @HostListener('document:click')
+  closeOnOutsideClick(): void {
+    if (this.menuOpen()) this.menuOpen.set(false);
+  }
+
+  @HostListener('document:keydown.escape')
+  closeOnEscape(): void {
+    this.menuOpen.set(false);
   }
 }

@@ -40,7 +40,7 @@
           <a
             class="sv-card"
             [href]="'#' + s.slug"
-            (click)="scrollTo(s.slug, $event)"
+            (click)="pickFromCard(s.slug, $event)"
           >
             <div class="sv-card-top">
               <span class="sv-card-code">{{ codeFor(s, i) }}</span>
@@ -81,54 +81,89 @@
 
 } @else {
 
-  <!-- STICKY INDEX -->
-  <nav class="sv-index" aria-label="Services">
-    <div class="sv-index-track">
-      @for (s of services(); track s.id; let i = $index) {
-        <a
-          [href]="'#' + s.slug"
-          [class.on]="active() === s.slug"
-          (click)="scrollTo(s.slug, $event)"
-        >
-          <b>{{ codeFor(s, i) }}</b>
-          <span>{{ s.title }}</span>
-        </a>
-      }
-    </div>
-  </nav>
+  <!-- SERVICE EXPLORER -->
+  <section class="sv-explorer" id="explorer">
+    <div class="sv-container">
 
-  <!-- SERVICES -->
-  <div class="sv-list">
-    @for (s of services(); track s.id; let i = $index) {
-      <section
-        class="sv-block"
-        [class.alt]="i % 2 === 1"
-        [class.flip]="i % 2 === 1"
-        [id]="s.slug"
-      >
-        <div class="sv-container sv-block-inner">
+      <div class="sv-explorer-head">
+        <div class="sv-explorer-title">
+          <span class="sv-label">Explore a service</span>
+          <h2>Choose a service to see what is inside.</h2>
+        </div>
 
-          <div class="sv-identity">
-            <span class="sv-code" aria-hidden="true">{{ codeFor(s, i) }}</span>
+        <!-- custom dropdown -->
+        <div class="sv-select" [class.open]="menuOpen()" (click)="$event.stopPropagation()">
 
-            <span class="sv-label">Service {{ codeFor(s, i) }}</span>
-            <h2>{{ s.title }}</h2>
-            <p>{{ s.description }}</p>
+          <button
+            type="button"
+            class="sv-select-btn"
+            aria-haspopup="listbox"
+            [attr.aria-expanded]="menuOpen()"
+            (click)="toggleMenu()"
+          >
+            @if (selected(); as cur) {
+              <b class="sv-select-code">{{ codeFor(cur, selectedIndex()) }}</b>
+              <span class="sv-select-text">
+                <small>Selected service</small>
+                {{ cur.title }}
+              </span>
+            }
+            <i class="bi bi-chevron-down sv-select-caret"></i>
+          </button>
 
-            <a class="sv-btn" routerLink="/contact">Discuss this service</a>
-          </div>
+          @if (menuOpen()) {
+            <ul class="sv-select-menu" role="listbox">
+              @for (s of services(); track s.id; let i = $index) {
+                <li
+                  role="option"
+                  [class.on]="s.slug === active()"
+                  [attr.aria-selected]="s.slug === active()"
+                  (click)="select(s.slug)"
+                >
+                  <b>{{ codeFor(s, i) }}</b>
+                  <span>{{ s.title }}</span>
+                  <em>{{ s.items_count }}</em>
+                  @if (s.slug === active()) { <i class="bi bi-check2"></i> }
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      </div>
 
-          <div class="sv-offer">
+      <!-- selected service panel (re-created per service to replay the animation) -->
+      @for (s of selectedList(); track s.id) {
+        <article class="sv-panel">
+
+          <header class="sv-panel-head">
+            <span class="sv-panel-code" aria-hidden="true">{{ codeFor(s, selectedIndex()) }}</span>
+
+            <div class="sv-panel-intro">
+              <span class="sv-panel-tag">
+                <i class="bi" [class]="iconFor(s, selectedIndex())"></i>
+                Service {{ codeFor(s, selectedIndex()) }}
+              </span>
+              <h3>{{ s.title }}</h3>
+              <p>{{ s.description }}</p>
+            </div>
+
+            <div class="sv-panel-count">
+              <strong>{{ s.items_count }}</strong>
+              <span>Key points</span>
+            </div>
+          </header>
+
+          <div class="sv-panel-body">
             @for (g of s.groups; track $index) {
               <div class="sv-group">
                 @if (g.title) {
-                  <h3>{{ g.title }}</h3>
+                  <h4><span>{{ g.title }}</span></h4>
                 }
-                <ul>
-                  @for (item of g.items; track item.id) {
-                    <li>
-                      <i class="bi bi-arrow-right-short"></i>
-                      <span>{{ item.title }}</span>
+                <ul class="sv-points">
+                  @for (item of g.items; track item.id; let n = $index) {
+                    <li [style.animation-delay]="(n * 40) + 'ms'">
+                      <span class="sv-point-no">{{ n + 1 < 10 ? '0' + (n + 1) : n + 1 }}</span>
+                      <span class="sv-point-text">{{ item.title }}</span>
                     </li>
                   }
                 </ul>
@@ -136,10 +171,35 @@
             }
           </div>
 
-        </div>
-      </section>
-    }
-  </div>
+          <footer class="sv-panel-foot">
+            <button
+              type="button"
+              class="sv-nav"
+              [disabled]="services().length < 2"
+              (click)="step(-1)"
+            >
+              <i class="bi bi-arrow-left"></i>
+              <span><small>Previous</small>{{ neighbor(-1)?.title }}</span>
+            </button>
+
+            <a class="sv-btn" routerLink="/contact">Discuss this service</a>
+
+            <button
+              type="button"
+              class="sv-nav next"
+              [disabled]="services().length < 2"
+              (click)="step(1)"
+            >
+              <span><small>Next</small>{{ neighbor(1)?.title }}</span>
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          </footer>
+
+        </article>
+      }
+
+    </div>
+  </section>
 
 }
 

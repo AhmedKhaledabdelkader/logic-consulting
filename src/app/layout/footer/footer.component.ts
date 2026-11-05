@@ -11,7 +11,7 @@ import { SiteContentService } from '../../core/services/site-content.service';
     <div class="container">
       <div class="row g-4">
         <div class="col-lg-3">
-          <h4 class="text-white fw-bold">Houida<br>Consulting <span class="text-accent">.</span></h4>
+          <h4 class="text-white fw-bold">Haytham<br>Nagdy <span class="text-accent">.</span></h4>
           <p>Leading MENA Consulting Firm</p>
           <div class="fs-5 d-flex gap-3">
             <a class="text-white-50" href="https://www.linkedin.com/company/logic-management-consulting/" target="_blank"><i class="bi bi-linkedin"></i></a>
@@ -43,7 +43,7 @@ import { SiteContentService } from '../../core/services/site-content.service';
         </div>
       </div>
       <hr class="border-secondary">
-      <p class="text-center small mb-0">© {{ year }} LOGIC Consulting. All rights reserved.</p>
+      <p class="text-center small mb-0">© {{ year }} Haytham Nagdy. All rights reserved.</p>
     </div>
   </footer>`,
 })

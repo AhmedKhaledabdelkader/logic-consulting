@@ -49,12 +49,12 @@ export const REGIONAL: RegionalSection = {
   label: 'Regional Consulting Partner',
   title: 'Local Presence.\nRegional Scale.\nEnduring Impact.',
   paragraph: [
-    'LOGIC Consulting exists to shape what’s next for organizations across the MENA region. For 28 years, we have worked with governments, family enterprises, and leading corporates to navigate uncertainty, capture new opportunities, and build resilient organizations.',
+    'Haytham Nagdy exists to shape what’s next for organizations across the MENA region. For 28 years, we have worked with governments, family enterprises, and leading corporates to navigate uncertainty, capture new opportunities, and build resilient organizations.',
     'Anchored in deep regional understanding and elevated by global thinking, we do more than consult, we challenge, align, and enable leaders to move decisively in moments that matter.',
     'At LOGIC, impact is not episodic; it is cumulative, compounding, and built through long-term partnership.',
   ],
   image: 'images/regional-consulting.png',
-  imageAlt: 'LOGIC Consulting Regional Consulting',
+  imageAlt: 'Haytham Nagdy Regional Consulting',
 };
 
 export const EXPERTISE: ExpertiseGroup[] = [
@@ -104,7 +104,7 @@ export const OFFICES: Office[] = [
 
 export const HERO_VIDEO: HeroVideo = {
   youtubeUrl: 'lY8zvsXEv28',
-  title: 'LOGIC Consulting',
+  title: 'Haytham Nagdy',
   subtitle:"ggggggg"
 };
 

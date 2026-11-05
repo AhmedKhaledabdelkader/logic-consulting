@@ -46,7 +46,7 @@ export class IndustryPageComponent {
   constructor() {
     effect(() => {
       const p = this.page();
-      if (p) this.titleService.setTitle(`${p.title} | LOGIC Consulting`);
+      if (p) this.titleService.setTitle(`${p.title} | Haytham Nagdy`);
     });
   }
 }
